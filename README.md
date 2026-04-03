@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🥚 EggFlow
 
-## Getting Started
+Sistema de gestão de pedidos para granjas, desenvolvido como laboratório de engenharia Frontend com foco em arquitetura, escalabilidade e experiência do usuário.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 Visão Geral
+
+O **EggFlow** é uma aplicação web construída com Next.js que simula um sistema real de gestão de pedidos (CRUD), com foco em boas práticas de desenvolvimento frontend moderno.
+
+Mais do que um app funcional, o projeto foi pensado para:
+
+- Demonstrar organização de código
+- Aplicar conceitos de engenharia frontend
+- Servir como base escalável para evolução
+
+---
+
+## 🧠 Problema
+
+Pequenos produtores e granjas precisam organizar pedidos, clientes e entregas de forma simples, mas muitas soluções são:
+
+- Complexas demais
+- Pouco intuitivas
+- Ou inexistentes
+
+---
+
+## 💡 Solução
+
+O EggFlow propõe:
+
+- Interface simples e objetiva
+- Gestão visual de pedidos
+- Estrutura preparada para crescimento
+
+---
+
+## 🧱 Stack Tecnológica
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Tailwind CSS (v4)**
+- **shadcn/ui**
+- **Zustand (estado global)**
+- **React Hook Form (formulários)**
+- **Zod (validação)**
+
+---
+
+## 📁 Estrutura do Projeto
+
+
+src/
+app/
+login/
+dashboard/
+pedidos/
+novo-pedido/
+
+components/
+ui/ # Componentes base (shadcn)
+egg-ui/ # Componentes do domínio
+layout/ # Sidebar, Header
+
+store/ # Estado global (Zustand)
+services/ # Integrações/API
+types/ # Tipagens
+utils/ # Funções auxiliares
+
+
+---
+
+## 🎨 Design System — Egg UI
+
+O projeto utiliza um design system próprio:
+
+- Componentes reutilizáveis
+- Tokens visuais consistentes
+- Foco em clareza e legibilidade
+- Layout baseado em espaçamento (clean UI)
+
+---
+
+## 🔐 Autenticação
+
+Fluxo de autenticação inclui:
+
+- Login com validação
+- Persistência de sessão
+- Proteção de rotas privadas
+- Redirecionamento automático pós-login
+
+---
+
+## 🧭 Fluxo da Aplicação
+
+```txt
+Login → Dashboard → Pedidos → Novo Pedido
+✨ Funcionalidades
+🔐 Login de usuário
+📊 Dashboard com visão geral
+📦 Listagem de pedidos
+➕ Criação de novos pedidos
+🔎 Filtros e busca
+📱 Layout responsivo
+⚙️ Como rodar o projeto
+# clonar repositório
+git clone https://github.com/seu-usuario/eggflow.git
+
+# entrar na pasta
+cd eggflow
+
+# instalar dependências
+npm install
+
+# rodar projeto
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+👉 http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧪 Status do Projeto
 
-## Learn More
+🚧 Em desenvolvimento
 
-To learn more about Next.js, take a look at the following resources:
+Próximas etapas:
+ Integração com API real
+ Testes automatizados
+ Controle de permissões
+ Deploy
+🧠 Aprendizados
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este projeto explora:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Arquitetura frontend escalável
+Componentização eficiente
+Separação de responsabilidades
+Experiência do usuário (UX)
+🤝 Contribuição
 
-## Deploy on Vercel
+Sugestões, melhorias e ideias são bem-vindas!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📌 Autor
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desenvolvido por Marcos de Sousa Lima 🚀

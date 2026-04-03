@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* EggFlow Custom Colors */
+  --color-primary: #705d00;
+  --color-primary-container: #ffd700;
+  --color-primary-fixed: #ffe16d;
+  --color-primary-fixed-dim: #e9c400;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #705e00;
+  --color-on-primary-fixed: #221b00;
+  --color-on-primary-fixed-variant: #544600;
+
+  --color-secondary: #006e1c;
+  --color-secondary-container: #91f78e;
+  --color-secondary-fixed: #94f990;
+  --color-secondary-fixed-dim: #78dc77;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #00731e;
+  --color-on-secondary-fixed: #002204;
+  --color-on-secondary-fixed-variant: #005313;
+
+  --color-tertiary: #5f5e5e;
+  --color-tertiary-container: #dbd9d9;
+  --color-tertiary-fixed: #e4e2e1;
+  --color-tertiary-fixed-dim: #c8c6c6;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #5f5f5f;
+  --color-on-tertiary-fixed: #1b1c1c;
+  --color-on-tertiary-fixed-variant: #474747;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  --color-background: #f9f9f9;
+  --color-on-background: #1a1c1c;
+
+  --color-surface: #f9f9f9;
+  --color-surface-dim: #dadada;
+  --color-surface-bright: #f9f9f9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f3;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e2e2e2;
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #4d4732;
+
+  --color-surface-variant: #e2e2e2;
+  --color-inverse-surface: #2f3131;
+  --color-inverse-on-surface: #f1f1f1;
+  --color-inverse-primary: #e9c400;
+
+  --color-outline: #7e775f;
+  --color-outline-variant: #d0c6ab;
+
+  --color-surface-tint: #705d00;
+
+  /* Border Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Font Families */
+  --font-headline: var(--font-manrope), ui-sans-serif, system-ui;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui;
+  --font-label: var(--font-inter), ui-sans-serif, system-ui;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-outline-variant);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+  }
+
+  /* No-Line Rule - Remove default borders */
+  hr {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px);
+  }
+
+  .yolk-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-fixed-dim) 100%);
+  }
+
+  .kinetic-pill:hover {
+    transform: scale(1.02);
+  }
+}
