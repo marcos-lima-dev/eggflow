@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Eye, Edit } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PedidoOrder } from '@/types/pedidoOrder';
-import { eggTypeConfig } from '@/config/orderEggType';
+import { pedidoEggTypeConfig } from '@/config/pedidoEggTypeConfig';
 import { pedidoOrderStatusConfig } from '@/config/pedidoOrderStatus';
 
 interface OrdersTableProps {
@@ -25,7 +25,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
           </thead>
           <tbody className="divide-y divide-outline-variant/10">
             {orders.map((order) => {
-              const eggType = eggTypeConfig[order.eggType];
+              const eggType = pedidoEggTypeConfig[order.eggType];
               const status = pedidoOrderStatusConfig[order.status];
               return (
                 <tr key={order.id} className="group hover:bg-surface-container-low/30 transition-colors">
