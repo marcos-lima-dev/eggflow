@@ -6,6 +6,7 @@ export interface PedidoOrder {
   client: string;
   clientAvatar: string;
   eggType: EggType;
+  quantity: string;        // novo campo
   status: PedidoStatus;
   date: string;
 }
