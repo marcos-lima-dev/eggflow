@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { TopAppBar } from "@/components/layout/TopAppBar";
 import { NavigationDrawer } from "@/components/layout/NavigationDrawer";
 import { BottomNavBar } from "@/components/layout/BottomNavBar";
@@ -7,6 +8,14 @@ import { OrdersTable } from "@/components/tables/OrdersTable";
 import { PrimaryMetricCard } from "@/components/dashboard/PrimaryMetricCard";
 import { DashboardMetricsGrid } from "@/components/dashboard/DashboardMetricsGrid";
 import { dashboardStats } from "@/data/dashboardStats";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+
+// Componente de fallback para Suspense (loading)
+function MetricSkeleton() {
+  return (
+    <div className="animate-pulse bg-surface-container-high rounded-3xl p-8 h-48" />
+  );
+}
 
 export default function DashboardPage() {
   const {
@@ -25,18 +34,20 @@ export default function DashboardPage() {
         <TopAppBar />
 
         <div className="max-w-7xl mx-auto px-6 pt-4 space-y-12">
-          {/* Hero Stats Section */}
+          {/* Hero Stats Section com Error Boundaries individuais */}
           <section className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            <PrimaryMetricCard
-              production={dailyProduction}
-              trend={dailyProductionTrend}
-            />
-            <DashboardMetricsGrid
-              weeklyOrders={weeklyOrders}
-              deliveredToday={deliveredToday}
-              monthlyRevenue={monthlyRevenue}
-              revenueOnTarget={revenueOnTarget}
-            />
+            <ErrorBoundary fallback={<div className="bg-error-container/20 rounded-3xl p-8 text-center">Erro ao carregar produção</div>}>
+              <PrimaryMetricCard production={dailyProduction} trend={dailyProductionTrend} />
+            </ErrorBoundary>
+
+            <ErrorBoundary fallback={<div className="col-span-3 bg-error-container/20 rounded-3xl p-8 text-center">Erro ao carregar métricas</div>}>
+              <DashboardMetricsGrid
+                weeklyOrders={weeklyOrders}
+                deliveredToday={deliveredToday}
+                monthlyRevenue={monthlyRevenue}
+                revenueOnTarget={revenueOnTarget}
+              />
+            </ErrorBoundary>
           </section>
 
           {/* Main Layout */}
@@ -50,13 +61,18 @@ export default function DashboardPage() {
                   Ver Todos
                 </button>
               </div>
-              <OrdersTable />
+              <ErrorBoundary>
+                <OrdersTable />
+              </ErrorBoundary>
             </div>
+
             <div className="space-y-6">
               <h2 className="text-2xl font-bold font-headline tracking-tight">
                 Vitais do Galpão
               </h2>
-              <HealthCard />
+              <ErrorBoundary>
+                <HealthCard />
+              </ErrorBoundary>
             </div>
           </section>
         </div>
