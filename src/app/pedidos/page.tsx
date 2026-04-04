@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useOrderStore } from "@/stores/orderStore";
 import { TopAppBar } from "@/components/layout/TopAppBar";
 import { NavigationDrawer } from "@/components/layout/NavigationDrawer";
 import { BottomNavBar } from "@/components/layout/BottomNavBar";
@@ -8,13 +9,17 @@ import { OrdersHeader } from "@/components/pedidos/OrdersHeader";
 import { OrdersFilters } from "@/components/pedidos/OrdersFilters";
 import { OrdersTable } from "@/components/pedidos/OrdersTable";
 import { OrdersPagination } from "@/components/pedidos/OrdersPagination";
-import { useOrderStore } from "@/stores/orderStore";
 
 export default function PedidosPage() {
-  const { orders } = useOrderStore();
+  const orders = useOrderStore((state) => state.orders);
+  const loadOrders = useOrderStore((state) => state.loadOrders);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
+
+  useEffect(() => {
+    loadOrders();
+  }, [loadOrders]);
 
   const filteredOrders = useMemo(() => {
     return orders.filter((order) =>
