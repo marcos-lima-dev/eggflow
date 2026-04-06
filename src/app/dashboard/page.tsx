@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import Link from "next/link";
 import { TopAppBar } from "@/components/layout/TopAppBar";
 import { NavigationDrawer } from "@/components/layout/NavigationDrawer";
 import { BottomNavBar } from "@/components/layout/BottomNavBar";
@@ -9,13 +9,6 @@ import { PrimaryMetricCard } from "@/components/egg-ui/cards/PrimaryMetricCard";
 import { DashboardMetricsGrid } from "@/components/egg-ui/cards/DashboardMetricsGrid";
 import { dashboardStats } from "@/data/dashboardStats";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-
-// Componente de fallback para Suspense (loading)
-function MetricSkeleton() {
-  return (
-    <div className="animate-pulse bg-surface-container-high rounded-3xl p-8 h-48" />
-  );
-}
 
 export default function DashboardPage() {
   const {
@@ -36,11 +29,26 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-6 pt-4 space-y-12">
           {/* Hero Stats Section com Error Boundaries individuais */}
           <section className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            <ErrorBoundary fallback={<div className="bg-error-container/20 rounded-3xl p-8 text-center">Erro ao carregar produção</div>}>
-              <PrimaryMetricCard production={dailyProduction} trend={dailyProductionTrend} />
+            <ErrorBoundary
+              fallback={
+                <div className="bg-error-container/20 rounded-3xl p-8 text-center">
+                  Erro ao carregar produção
+                </div>
+              }
+            >
+              <PrimaryMetricCard
+                production={dailyProduction}
+                trend={dailyProductionTrend}
+              />
             </ErrorBoundary>
 
-            <ErrorBoundary fallback={<div className="col-span-3 bg-error-container/20 rounded-3xl p-8 text-center">Erro ao carregar métricas</div>}>
+            <ErrorBoundary
+              fallback={
+                <div className="col-span-3 bg-error-container/20 rounded-3xl p-8 text-center">
+                  Erro ao carregar métricas
+                </div>
+              }
+            >
               <DashboardMetricsGrid
                 weeklyOrders={weeklyOrders}
                 deliveredToday={deliveredToday}
@@ -57,9 +65,12 @@ export default function DashboardPage() {
                 <h2 className="text-2xl font-bold font-headline tracking-tight">
                   Pedidos Recentes
                 </h2>
-                <button className="text-primary font-bold text-sm hover:underline">
+                <Link
+                  href="/pedidos"
+                  className="text-primary font-bold text-sm hover:underline"
+                >
                   Ver Todos
-                </button>
+                </Link>
               </div>
               <ErrorBoundary>
                 <OrdersTable />
