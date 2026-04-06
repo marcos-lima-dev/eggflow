@@ -6,10 +6,6 @@ interface StatsCardProps {
   value: string | number;
   subtitle?: string;
   icon: ReactNode;
-  trend?: {
-    value: number;
-    label: string;
-  };
   className?: string;
 }
 
@@ -18,7 +14,6 @@ export function StatsCard({
   value,
   subtitle,
   icon,
-  trend,
   className,
 }: StatsCardProps) {
   return (
@@ -40,12 +35,6 @@ export function StatsCard({
           <p className="text-xs text-on-surface-variant">{subtitle}</p>
         )}
       </div>
-      {trend && (
-        <div className="mt-4 flex items-center gap-2">
-          <span className="text-secondary font-bold text-lg">+{trend.value}%</span>
-          <span className="text-on-surface-variant text-sm">{trend.label}</span>
-        </div>
-      )}
     </div>
   );
 }

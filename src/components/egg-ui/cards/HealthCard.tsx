@@ -1,4 +1,4 @@
-import { Thermometer, Droplets, Activity, Heart, Monitor } from "lucide-react";
+import { Activity, Monitor, Thermometer, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function HealthCard() {
@@ -40,7 +40,6 @@ export function HealthCard() {
         </Button>
       </div>
 
-      {/* Decorative Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <img
           alt="Planta Técnica"

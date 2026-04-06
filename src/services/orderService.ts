@@ -1,15 +1,12 @@
 import { PedidoOrder } from "@/types/pedidoOrder";
 
-// Chave do localStorage
 const STORAGE_KEY = "eggflow-orders";
 
-// Dados mock iniciais (se localStorage vazio)
-const INITIAL_ORDERS: PedidoOrder[] = [
+const initialOrders: PedidoOrder[] = [
   {
     id: "#EF-9082",
     client: "Artisan Bakery Co.",
-    clientAvatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD-QKCgmO_BoSolXwR6AHRFbaGL-LOz3X0Lh8MeWb2PGgKKAXBwpRI0CzJMVsYA51aMjgcaLlhpXQf87GiOvyFoSFZ-aK3ycALYwc8KSucxYwSNz2manjM0XifA_b7Nklkb4SYnI4Ic7M4VImMywB1V4NcI2o8J8SMQsbVRoI9dM3lkPCKR97n-Bkx_OqbtXV_MrEDnKrS79uc-JO4rqiRG1rgDktUcG3iQTQdOLarivE2V4qn8K0vDeOKSjjYZDLSTfPOiHMr7LA",
+    clientAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuD-QKCgmO_BoSolXwR6AHRFbaGL-LOz3X0Lh8MeWb2PGgKKAXBwpRI0CzJMVsYA51aMjgcaLlhpXQf87GiOvyFoSFZ-aK3ycALYwc8KSucxYwSNz2manjM0XifA_b7Nklkb4SYnI4Ic7M4VImMywB1V4NcI2o8J8SMQsbVRoI9dM3lkPCKR97n-Bkx_OqbtXV_MrEDnKrS79uc-JO4rqiRG1rgDktUcG3iQTQdOLarivE2V4qn8K0vDeOKSjjYZDLSTfPOiHMr7LA",
     eggType: "organic",
     status: "delivered",
     date: "24 Out, 2023",
@@ -17,8 +14,7 @@ const INITIAL_ORDERS: PedidoOrder[] = [
   {
     id: "#EF-9104",
     client: "WholeFoods Market",
-    clientAvatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCjCIUsgECqZBC4S6L1ACtUm7IxDUPMIkD_nYFtJshoevnwzW7D25q2mTMDv8-1n30Y3AVbhZx5mBzFs7slqPWT0bZMyzrmc9ugTc91iyEMWLLL6gWLz4Jml5yNSpU6KNZMJjXhGOrVNNgFPCsKFEWCO7y5I-gb2915wSM0RmCFBnsr5Qs9rPD2Wz72kLJgu2sJqS_gJd7TuWOBtzfmS9Gn3ewlwS5gx6vI-sXb5v9oTZN8ONjFF46czQzXcc-9x6hgaXvl_q4ssw",
+    clientAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCjCIUsgECqZBC4S6L1ACtUm7IxDUPMIkD_nYFtJshoevnwzW7D25q2mTMDv8-1n30Y3AVbhZx5mBzFs7slqPWT0bZMyzrmc9ugTc91iyEMWLLL6gWLz4Jml5yNSpU6KNZMJjXhGOrVNNgFPCsKFEWCO7y5I-gb2915wSM0RmCFBnsr5Qs9rPD2Wz72kLJgu2sJqS_gJd7TuWOBtzfmS9Gn3ewlwS5gx6vI-sXb5v9oTZN8ONjFF46czQzXcc-9x6hgaXvl_q4ssw",
     eggType: "caipira",
     status: "processing",
     date: "25 Out, 2023",
@@ -26,8 +22,7 @@ const INITIAL_ORDERS: PedidoOrder[] = [
   {
     id: "#EF-8977",
     client: "Central Bistro",
-    clientAvatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAKw3QR31Fade5OCxHwfX8qaHhEbhKxpqYa2ggssNqHPVtV4f5TrenBct9jN5TnNrlRLDJTiuMs_2XsAvYHyV7wVkOZj0xQt5BiUqtanB-7cLbhmG0lMoVZ-0lkTQXWxWwHu597xEph09C8FKaAKHLk2dZHru7bnARr0e3yHUguqyRnCxvI_fRnOYNkRXCqCRiejSN1n6yNtvc-GGL3WuroX2ycfn4l9rXylA8Knurcjsc0op7h9pamaMn_JFOyZ3M8qah-JiDovQ",
+    clientAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKw3QR31Fade5OCxHwfX8qaHhEbhKxpqYa2ggssNqHPVtV4f5TrenBct9jN5TnNrlRLDJTiuMs_2XsAvYHyV7wVkOZj0xQt5BiUqtanB-7cLbhmG0lMoVZ-0lkTQXWxWwHu597xEph09C8FKaAKHLk2dZHru7bnARr0e3yHUguqyRnCxvI_fRnOYNkRXCqCRiejSN1n6yNtvc-GGL3WuroX2ycfn4l9rXylA8Knurcjsc0op7h9pamaMn_JFOyZ3M8qah-JiDovQ",
     eggType: "industrial",
     status: "pending",
     date: "26 Out, 2023",
@@ -35,87 +30,110 @@ const INITIAL_ORDERS: PedidoOrder[] = [
   {
     id: "#EF-9201",
     client: "Pasta & Vino",
-    clientAvatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBCc8lvvq21i_GCbpaA9HcUP1exAbFilLo8vGKthuM2hOkTLtCLpZKUfvweZRWJXVy3ULVyn9y2yQywoS06X9sS6mQuQsPXwR2MS3FugFTALlrrsSNbBQ6Ap4dAuO-PLquNG5Woz_OV8WiyloIVhoaasJcEBcsXvp8BHQAMTD6QpYXTT4jrQGoTgDxLI1pPlVEh5S2zfx8qZAcInrbOidVoDUOvKcnpIooz9yqN_PXiwbuyxVatKr8fryNQ03OXWRwHL5BlfMuyew",
+    clientAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuBCc8lvvq21i_GCbpaA9HcUP1exAbFilLo8vGKthuM2hOkTLtCLpZKUfvweZRWJXVy3ULVyn9y2yQywoS06X9sS6mQuQsPXwR2MS3FugFTALlrrsSNbBQ6Ap4dAuO-PLquNG5Woz_OV8WiyloIVhoaasJcEBcsXvp8BHQAMTD6QpYXTT4jrQGoTgDxLI1pPlVEh5S2zfx8qZAcInrbOidVoDUOvKcnpIooz9yqN_PXiwbuyxVatKr8fryNQ03OXWRwHL5BlfMuyew",
     eggType: "organic",
     status: "cancelled",
     date: "26 Out, 2023",
   },
 ];
 
-class OrderService {
-  private getStorageOrders(): PedidoOrder[] {
-    if (typeof window === "undefined") return [];
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return [];
-    try {
-      const parsed = JSON.parse(stored);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
+export class OrderService {
+  private storageKey: string;
+
+  constructor(key: string = STORAGE_KEY) {
+    this.storageKey = key;
+    this.initializeStorage();
   }
 
-  private setStorageOrders(orders: PedidoOrder[]): void {
+  private initializeStorage(): void {
     if (typeof window === "undefined") return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
-  }
-
-  // Carrega pedidos (se localStorage vazio, inicializa com mock)
-  loadOrders(): PedidoOrder[] {
-    const orders = this.getStorageOrders();
-    if (orders.length === 0) {
-      this.setStorageOrders(INITIAL_ORDERS);
-      return INITIAL_ORDERS;
+    const stored = localStorage.getItem(this.storageKey);
+    if (!stored) {
+      console.log("[OrderService] Inicializando localStorage com pedidos mock");
+      localStorage.setItem(this.storageKey, JSON.stringify(initialOrders));
     }
-    return orders;
   }
 
-  // Salva lista inteira (usado internamente)
+  getOrders(): PedidoOrder[] {
+    console.log("[OrderService] getOrders chamado");
+    if (typeof window === "undefined") {
+      console.log("[OrderService] Server-side, retornando initialOrders");
+      return initialOrders;
+    }
+    const stored = localStorage.getItem(this.storageKey);
+    if (!stored) {
+      console.log("[OrderService] Nenhum dado no localStorage, retornando initialOrders");
+      return initialOrders;
+    }
+    try {
+      const orders = JSON.parse(stored);
+      const valid = Array.isArray(orders) ? orders : initialOrders;
+      console.log(`[OrderService] ${valid.length} pedidos carregados do localStorage`);
+      return valid;
+    } catch (err) {
+      console.error("[OrderService] Erro ao parsear JSON", err);
+      return initialOrders;
+    }
+  }
+
   saveOrders(orders: PedidoOrder[]): void {
-    this.setStorageOrders(orders);
+    if (typeof window === "undefined") return;
+    localStorage.setItem(this.storageKey, JSON.stringify(orders));
+    console.log(`[OrderService] ${orders.length} pedidos salvos no localStorage`);
   }
 
-  // Adiciona novo pedido
   addOrder(order: Omit<PedidoOrder, "id">): PedidoOrder {
-    const orders = this.loadOrders();
+    console.log("[OrderService] addOrder recebido:", order);
+    const orders = this.getOrders();
     const newId = this.getNextId(orders);
     const newOrder: PedidoOrder = { ...order, id: newId };
     const updatedOrders = [newOrder, ...orders];
     this.saveOrders(updatedOrders);
+    console.log(`[OrderService] ✅ Pedido ${newId} adicionado. Total: ${updatedOrders.length}`);
     return newOrder;
   }
 
-  // Atualiza pedido existente
   updateOrder(id: string, updates: Partial<PedidoOrder>): PedidoOrder | null {
-    const orders = this.loadOrders();
+    console.log(`[OrderService] updateOrder chamado para id ${id}`, updates);
+    const orders = this.getOrders();
     const index = orders.findIndex((o) => o.id === id);
-    if (index === -1) return null;
+    if (index === -1) {
+      console.warn(`[OrderService] Pedido ${id} não encontrado para atualização`);
+      return null;
+    }
     const updatedOrder = { ...orders[index], ...updates };
-    orders[index] = updatedOrder;
-    this.saveOrders(orders);
+    const updatedOrders = [...orders];
+    updatedOrders[index] = updatedOrder;
+    this.saveOrders(updatedOrders);
+    console.log(`[OrderService] ✅ Pedido ${id} atualizado`);
     return updatedOrder;
   }
 
-  // Remove pedido
   deleteOrder(id: string): boolean {
-    const orders = this.loadOrders();
+    console.log(`[OrderService] deleteOrder chamado para id ${id}`);
+    const orders = this.getOrders();
     const filtered = orders.filter((o) => o.id !== id);
-    if (filtered.length === orders.length) return false;
+    if (filtered.length === orders.length) {
+      console.warn(`[OrderService] Pedido ${id} não encontrado para exclusão`);
+      return false;
+    }
     this.saveOrders(filtered);
+    console.log(`[OrderService] ✅ Pedido ${id} removido. Restam ${filtered.length}`);
     return true;
   }
 
-  // Gera próximo ID
   private getNextId(orders: PedidoOrder[]): string {
-    // Garantir que orders é array
-    if (!Array.isArray(orders)) orders = [];
-    let max = 9082;
-    for (const order of orders) {
-      const num = parseInt(order.id.replace("#EF-", ""));
-      if (!isNaN(num) && num > max) max = num;
+    if (!Array.isArray(orders) || orders.length === 0) {
+      console.log("[OrderService] Nenhum pedido existente, gerando ID inicial #EF-9083");
+      return "#EF-9083";
     }
-    return `#EF-${max + 1}`;
+    const maxId = orders.reduce((max, order) => {
+      const num = parseInt(order.id.replace("#EF-", ""));
+      return isNaN(num) ? max : Math.max(max, num);
+    }, 9082);
+    const nextId = `#EF-${maxId + 1}`;
+    console.log(`[OrderService] Próximo ID gerado: ${nextId}`);
+    return nextId;
   }
 }
 

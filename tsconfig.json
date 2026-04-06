@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/egg-ui": ["./src/components/egg-ui/index.ts"]
     }
   },
   "include": [

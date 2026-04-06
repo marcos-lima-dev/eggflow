@@ -4,24 +4,31 @@ import { orderService } from "@/services/orderService";
 
 interface OrderStore {
   orders: PedidoOrder[];
-  addOrder: (order: Omit<PedidoOrder, "id">) => void;
-  updateOrder: (id: string, order: Partial<PedidoOrder>) => void;
-  deleteOrder: (id: string) => void;
+  isLoading: boolean;
   loadOrders: () => void;
+  addOrder: (order: Omit<PedidoOrder, "id">) => void;
+  updateOrder: (id: string, updates: Partial<PedidoOrder>) => void;
+  deleteOrder: (id: string) => void;
 }
 
-export const useOrderStore = create<OrderStore>((set) => ({
+export const useOrderStore = create<OrderStore>((set, get) => ({
   orders: [],
+  isLoading: true,
   loadOrders: () => {
-    const loaded = orderService.loadOrders();
-    set({ orders: loaded });
+    console.log("[Store] loadOrders chamado");
+    const orders = orderService.getOrders();
+    console.log(`[Store] ${orders.length} pedidos carregados na store`);
+    set({ orders, isLoading: false });
   },
   addOrder: (order) => {
+    console.log("[Store] addOrder chamado com:", order);
     const newOrder = orderService.addOrder(order);
+    console.log("[Store] Novo pedido retornado do service:", newOrder);
     set((state) => ({ orders: [newOrder, ...state.orders] }));
   },
-  updateOrder: (id, updatedFields) => {
-    const updated = orderService.updateOrder(id, updatedFields);
+  updateOrder: (id, updates) => {
+    console.log(`[Store] updateOrder chamado para ${id}`, updates);
+    const updated = orderService.updateOrder(id, updates);
     if (updated) {
       set((state) => ({
         orders: state.orders.map((o) => (o.id === id ? updated : o)),
@@ -29,6 +36,7 @@ export const useOrderStore = create<OrderStore>((set) => ({
     }
   },
   deleteOrder: (id) => {
+    console.log(`[Store] deleteOrder chamado para ${id}`);
     const success = orderService.deleteOrder(id);
     if (success) {
       set((state) => ({

@@ -1,4 +1,4 @@
-import { StatsCard } from "@/components/cards/StatsCard";
+import { StatsCard } from "./StatsCard";
 import { RevenueCard } from "./RevenueCard";
 import { ShoppingBasket, Truck } from "lucide-react";
 

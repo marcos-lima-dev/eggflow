@@ -4,8 +4,8 @@ import { TopAppBar } from "@/components/layout/TopAppBar";
 import { NavigationDrawer } from "@/components/layout/NavigationDrawer";
 import { BottomNavBar } from "@/components/layout/BottomNavBar";
 import { NovoPedidoForm } from "./NovoPedidoForm";
-import { InventoryStatusCard } from "./InventoryStatusCard";
-import { QuickHelp } from "./QuickHelp";
+import { InventoryStatusCard } from "@/components/egg-ui/cards/InventoryStatusCard";
+import { QuickHelp } from "@/components/egg-ui/feedback/QuickHelp";
 
 export default function NovoPedidoPage() {
   return (

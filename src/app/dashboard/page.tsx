@@ -3,10 +3,10 @@ import { TopAppBar } from "@/components/layout/TopAppBar";
 import { NavigationDrawer } from "@/components/layout/NavigationDrawer";
 import { BottomNavBar } from "@/components/layout/BottomNavBar";
 import { FloatingActionButton } from "@/components/layout/FloatingActionButton";
-import { HealthCard } from "@/components/cards/HealthCard";
+import { HealthCard } from "@/components/egg-ui/cards/HealthCard";
 import { OrdersTable } from "@/components/tables/OrdersTable";
-import { PrimaryMetricCard } from "@/components/dashboard/PrimaryMetricCard";
-import { DashboardMetricsGrid } from "@/components/dashboard/DashboardMetricsGrid";
+import { PrimaryMetricCard } from "@/components/egg-ui/cards/PrimaryMetricCard";
+import { DashboardMetricsGrid } from "@/components/egg-ui/cards/DashboardMetricsGrid";
 import { dashboardStats } from "@/data/dashboardStats";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
