@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useOrderStore } from "@/stores/orderStore";
 import { toast } from "sonner";
 import { generateAvatarUrl, formatDateForDisplay, mapPriorityToStatus } from "@/lib/orderUtils";
+import { formatQuantity } from "@/lib/orderUtils";
 
 interface FormData {
   client: string;
@@ -48,6 +49,7 @@ export function useNovoPedidoForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    quantity: formatQuantity(formData.quantity);
 
     if (!validate()) {
       setIsLoading(false);
@@ -62,6 +64,7 @@ export function useNovoPedidoForm() {
       client: formData.client,
       clientAvatar: avatarUrl,
       eggType: formData.eggType,
+      quantity: `${formData.quantity} Dúzias`,
       status,
       date: formattedDate,
     });
