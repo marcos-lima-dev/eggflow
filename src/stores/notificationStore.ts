@@ -24,12 +24,11 @@ interface NotificationStore {
   clearAll: () => void;
 }
 
-// Gera ID único usando crypto.randomUUID() (garantia de unicidade)
+// Gera ID único
 function generateUniqueId(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID();
   }
-  // Fallback ultra-seguro (quase impossível colidir)
   return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}-${performance.now()}`;
 }
 
@@ -39,7 +38,7 @@ export const useNotificationStore = create<NotificationStore>()(
       notifications: [],
       unreadCount: 0,
       addNotification: (notification) => {
-        // Evita duplicatas exatas (mesmo título e descrição) - opcional
+        // Evita duplicatas
         const existing = get().notifications.find(
           (n) => n.title === notification.title && n.description === notification.description
         );
@@ -47,7 +46,7 @@ export const useNotificationStore = create<NotificationStore>()(
 
         const newNotification: Notification = {
           ...notification,
-          id: generateUniqueId(), // ✅ ID único garantido
+          id: generateUniqueId(),
           createdAt: new Date(),
           read: false,
         };
@@ -78,22 +77,22 @@ export const useNotificationStore = create<NotificationStore>()(
     }),
     {
       name: 'eggflow-notifications',
-      // Serializar/deserializar corretamente as datas
-      serialize: (state) => JSON.stringify(state),
-      deserialize: (str) => JSON.parse(str, (key, value) => {
-        if (key === 'createdAt' && typeof value === 'string') {
-          return new Date(value);
-        }
-        return value;
-      }),
-      // 🧹 Migração: ao carregar, remove notificações com IDs no formato antigo (apenas números)
+      // Usar onRehydrateStorage para converter strings de data de volta para Date e limpar IDs antigos
       onRehydrateStorage: () => (state, error) => {
-        if (error) return;
-        if (state && state.notifications) {
+        if (error) {
+          console.error('Erro ao reidratar notificações', error);
+          return;
+        }
+        if (state) {
+          // Converte createdAt de string para Date
+          state.notifications = state.notifications.map((n) => ({
+            ...n,
+            createdAt: typeof n.createdAt === 'string' ? new Date(n.createdAt) : n.createdAt,
+          }));
+          // Verifica IDs antigos (apenas números)
           const hasOldFormat = state.notifications.some((n) => /^\d+$/.test(n.id));
           if (hasOldFormat) {
             console.warn('🧹 Removendo notificações com IDs antigos (formato numérico).');
-            // Limpa o estado e o localStorage
             setTimeout(() => {
               useNotificationStore.getState().clearAll();
             }, 0);
