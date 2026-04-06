@@ -1,10 +1,21 @@
-import { Eye, Edit } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { mockOrders } from '@/data/mockOrders';
-import { dashboardOrderStatusConfig } from '@/config/orderStatus';
+
+"use client";
+
+import { Eye, Edit } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { mockOrders } from "@/data/mockOrders";
+import { dashboardOrderStatusConfig } from "@/config/orderStatus";
 
 export function OrdersTable() {
+  const router = useRouter();
+
+  const handleEdit = (id: string) => {
+    const encodedId = encodeURIComponent(id);
+    router.push(`/pedidos/editar/${encodedId}`);
+  };
+
   return (
     <div className="bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-sm">
       <div className="overflow-x-auto">
@@ -21,6 +32,7 @@ export function OrdersTable() {
           <tbody className="divide-y divide-surface-container">
             {mockOrders.map((order) => {
               const status = dashboardOrderStatusConfig[order.status];
+
               return (
                 <tr key={order.id} className="hover:bg-surface-container-low transition-colors group">
                   <td className="px-6 py-5">
@@ -42,18 +54,20 @@ export function OrdersTable() {
                   <td className="px-6 py-5 text-center font-bold">{order.quantity}</td>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-2">
-                      <div className={cn('w-2 h-2 rounded-full', status.dotClass)} />
-                      <span className={cn('text-xs font-bold uppercase tracking-wider', status.className)}>
+                      <div className={cn("w-2 h-2 rounded-full", status.dotClass)} />
+                      <span className={cn("text-xs font-bold uppercase tracking-wider", status.className)}>
                         {status.label}
                       </span>
                     </div>
                   </td>
                   <td className="px-6 py-5 text-right">
                     <div className="flex justify-end gap-2">
-                      <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-surface-container-high">
-                        <Eye className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-surface-container-high">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 rounded-lg hover:bg-surface-container-high"
+                        onClick={() => handleEdit(order.id)}
+                      >
                         <Edit className="w-4 h-4" />
                       </Button>
                     </div>
