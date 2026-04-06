@@ -4,7 +4,6 @@ import { useOrderStore } from "@/stores/orderStore";
 import { toast } from "sonner";
 import { generateAvatarUrl, formatDateForDisplay, mapPriorityToStatus } from "@/lib/orderUtils";
 
-
 interface FormData {
   client: string;
   eggType: "organic" | "caipira" | "industrial";
@@ -49,7 +48,6 @@ export function useNovoPedidoForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    quantity: formatQuantity(formData.quantity);
 
     if (!validate()) {
       setIsLoading(false);
