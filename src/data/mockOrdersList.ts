@@ -8,6 +8,7 @@ export const mockOrdersList: PedidoOrder[] = [
     eggType: 'organic',
     status: 'delivered',
     date: '24 Out, 2023',
+    quantity: '120 Dúzias',   // ← adicionado
   },
   {
     id: '#EF-9104',
@@ -16,6 +17,7 @@ export const mockOrdersList: PedidoOrder[] = [
     eggType: 'caipira',
     status: 'processing',
     date: '25 Out, 2023',
+    quantity: '450 Dúzias',   // ← adicionado
   },
   {
     id: '#EF-8977',
@@ -24,6 +26,7 @@ export const mockOrdersList: PedidoOrder[] = [
     eggType: 'industrial',
     status: 'pending',
     date: '26 Out, 2023',
+    quantity: '80 Dúzias',    // ← adicionado
   },
   {
     id: '#EF-9201',
@@ -32,5 +35,6 @@ export const mockOrdersList: PedidoOrder[] = [
     eggType: 'organic',
     status: 'cancelled',
     date: '26 Out, 2023',
+    quantity: '200 Dúzias',   // ← adicionado
   },
 ];
