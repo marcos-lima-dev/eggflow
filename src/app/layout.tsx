@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { TransitionLoader } from "@/components/TransitionLoader";
+import { NotificationInitializer } from "@/components/NotificationInitializer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,8 +36,9 @@ export default function RootLayout({
         )}
         suppressHydrationWarning
       >
-         <TransitionLoader />
+        <TransitionLoader />
         {children}
+        <NotificationInitializer />
         <Toaster
           position="top-right"
           richColors

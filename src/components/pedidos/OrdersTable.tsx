@@ -24,10 +24,12 @@ export function OrdersTable({ orders }: OrdersTableProps) {
   }, []);
 
   const handleEdit = useCallback((id: string) => {
-    if (isMounted) {
-      router.push(`/pedidos/editar/${id}`);
-    }
-  }, [isMounted, router]);
+  if (isMounted) {
+    const encodedId = encodeURIComponent(id);
+    console.log(`[Edit] Navegando para /pedidos/editar/${encodedId}`);
+    router.push(`/pedidos/editar/${encodedId}`);
+  }
+}, [isMounted, router]);
 
   const handleDelete = useCallback((id: string) => {
     if (confirm('Tem certeza que deseja excluir este pedido? Esta ação não pode ser desfeita.')) {
