@@ -4,7 +4,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Download, Plus } from "lucide-react";
 
-export function OrdersHeader() {
+interface OrdersHeaderProps {
+  onExport?: () => void;
+}
+
+export function OrdersHeader({ onExport }: OrdersHeaderProps) {
   return (
     <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
       <div>
@@ -16,7 +20,10 @@ export function OrdersHeader() {
         </p>
       </div>
       <div className="flex gap-3">
-        <Button className="px-6 py-3 rounded-xl bg-surface-container-lowest text-primary font-bold hover:scale-105 transition-all shadow-sm flex items-center gap-2">
+        <Button
+          onClick={onExport}
+          className="px-6 py-3 rounded-xl bg-surface-container-lowest text-primary font-bold hover:scale-105 transition-all shadow-sm flex items-center gap-2"
+        >
           <Download className="w-4 h-4" />
           Exportar
         </Button>
