@@ -10,6 +10,7 @@ const initialOrders: PedidoOrder[] = [
     eggType: "organic",
     status: "delivered",
     date: "24 Out, 2023",
+    quantity: "120 Dúzias",
   },
   {
     id: "#EF-9104",
@@ -18,6 +19,7 @@ const initialOrders: PedidoOrder[] = [
     eggType: "caipira",
     status: "processing",
     date: "25 Out, 2023",
+    quantity: "450 Dúzias", 
   },
   {
     id: "#EF-8977",
@@ -26,6 +28,7 @@ const initialOrders: PedidoOrder[] = [
     eggType: "industrial",
     status: "pending",
     date: "26 Out, 2023",
+    quantity: "120 Dúzias", 
   },
   {
     id: "#EF-9201",
@@ -34,6 +37,7 @@ const initialOrders: PedidoOrder[] = [
     eggType: "organic",
     status: "cancelled",
     date: "26 Out, 2023",
+    quantity: "315 Dúzias", 
   },
 ];
 
