@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useOrderStore } from "@/stores/orderStore";
 import { toast } from "sonner";
 import { generateAvatarUrl, formatDateForDisplay, mapPriorityToStatus } from "@/lib/orderUtils";
-import { formatQuantity } from "@/lib/orderUtils";
+
 
 interface FormData {
   client: string;
