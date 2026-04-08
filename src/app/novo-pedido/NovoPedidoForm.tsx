@@ -3,9 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { User, Package, Calendar, Egg } from "lucide-react";
 import { FormField } from "@/components/egg-ui/forms/FormField";
-import { EggSelect } from "@/components/egg-ui/forms/EggSelect";
 import { PriorityButtons } from "@/components/egg-ui/forms/PriorityButtons";
 import { useNovoPedidoForm } from "@/hooks/useNovoPedidoForm";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 const eggTypeOptions = [
   { value: "organic", label: "Orgânico Vermelho" },
@@ -29,15 +36,39 @@ export function NovoPedidoForm() {
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <EggSelect
-          id="eggType"
-          label="Tipo de Ovo"
-          icon={<Egg className="w-5 h-5" />}
-          value={formData.eggType}
-          options={eggTypeOptions}
-          onValueChange={(val) => handleChange("eggType", val)}
-          disabled={isLoading}
-        />
+        {/* Tipo de Ovo */}
+        <div className="space-y-2 overflow-visible">
+          <Label className="text-sm font-semibold text-on-surface-variant ml-1">
+            Tipo de Ovo
+          </Label>
+          <div className="relative">
+            <Egg className="absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant w-5 h-5 z-10" />
+            <Select
+              value={formData.eggType}
+              onValueChange={(val) => handleChange("eggType", val)}
+              disabled={isLoading}
+            >
+              <SelectTrigger className="pl-12 py-4 bg-surface-container-low border border-outline-variant/20 rounded-2xl focus:ring-2 focus:ring-primary/20 w-full text-on-surface">
+                <SelectValue placeholder="Selecione o tipo" />
+              </SelectTrigger>
+              {/* portal={false} evita que o dropdown seja renderizado fora do contexto, mas depende do overflow do pai */}
+              <SelectContent
+                className="z-[9999] bg-surface-container-lowest dark:bg-zinc-900 border border-outline-variant rounded-lg shadow-lg"
+                position="popper"
+                side="bottom"
+                sideOffset={10}
+                align="start"
+                collisionPadding={{ bottom: 20 }}
+              >
+                {eggTypeOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
         <FormField
           id="quantity"
